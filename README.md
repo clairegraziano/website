@@ -1,46 +1,18 @@
-# Astro Starter Kit: Basics
+# Somatics & Embodiment with Claire Graziano
+
+Astro website for Claire Graziano's somatic-focused integrative counselling, trauma recovery, body therapy and practitioner training.
+
+## Development
+
+Requires Node.js >=22.23.4.
 
 ```sh
-npm create astro@latest -- --template basics
+npm ci
+npm run dev
+npm run build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The homepage is in `src/pages/index.astro`, the shared HTML head and layout in `src/layouts/Layout.astro`, and public images and the favicon in `public/`.
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Before publishing, verify contact information, the public domain and deployment configuration, accessibility, and privacy/legal information. Run `npm run build` and inspect the production preview.
