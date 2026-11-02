@@ -1,0 +1,299 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const workshops = [
+  {
+    id: 'friday',
+    day: 'Friday',
+    date: '27 November 2026',
+    datetime: '2026-11-27',
+    title: 'Educational and Theoretical Training',
+    description: 'An educational, theoretical and exploratory day introducing ECM-IT and its developing clinical framework.',
+    time: '10:00–17:30',
+    start: '2026-11-27T10:00',
+    price: '£170',
+    capacity: 9,
+    audience: 'Open to anyone interested, including professionals.',
+    topics: [
+      'Fascia and the extracellular matrix, including fascia/ECM matrix lines',
+      'Protective responses, contraction, connection and expansion',
+      'Attunement, integration and the body’s capacity for change',
+      'Established scientific knowledge alongside ECM-IT observations and hypotheses'
+    ],
+    poster: null as string | null
+  },
+  {
+    id: 'saturday',
+    day: 'Saturday',
+    date: '28 November 2026',
+    datetime: '2026-11-28',
+    title: 'Experiential Hands-on Body Therapy Training',
+    description: 'An experiential, hands-on ECM-IT body therapy day, centred on sensitivity, attunement and learning through practice.',
+    time: '10:00–17:30',
+    start: '2026-11-28T10:00',
+    price: '£170',
+    capacity: 9,
+    audience: 'Open to anyone interested, including professionals.',
+    topics: [
+      'Noticing protective responses, contraction, connection and expansion',
+      'Developing sensitivity to fascia and whole-body responses',
+      'Responsive touch, movement and breath, guided by consent and feedback',
+      'Creating conditions in which the body can initiate its own release'
+    ],
+    poster: null as string | null
+  }
+];
+
+const bookingOptions = [
+  { label: 'BOOK FRIDAY', detail: 'Friday 27 November 2026', price: '£170', url: null as string | null },
+  { label: 'BOOK SATURDAY', detail: 'Saturday 28 November 2026', price: '£170', url: null as string | null },
+  { label: 'BOOK BOTH DAYS', detail: 'Friday and Saturday', price: '£340', url: null as string | null }
+];
+
+// Add Claire’s Dandelion organisation slug here to show its upcoming event list automatically.
+const dandelionOrganisationSlug: string | null = null;
+const ticketFormUrl = (url: string) => url + (url.includes('?') ? '&' : '?') + 'ticket_form_only=1';
+---
+
+<Layout
+  title="Innovative Somatic Bodywork & Whole-Body ECM Integration | Claire Graziano"
+  description="Educational and experiential ECM-IT workshops with Claire Graziano, exploring fascia, protective responses, attunement and the body’s capacity for change."
+>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="page" id="top">
+    <header class="header">
+      <a class="brand" href="/" aria-label="Claire Graziano — home">Somatics <em>&amp;</em> Embodiment<small>with Claire Graziano</small></a>
+      <nav aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/#about">About Claire</a>
+        <a href="/#work">Therapy &amp; Bodywork</a>
+        <a href="/workshops-training" aria-current="page">Workshops &amp; Training</a>
+        <a href="/glossary">Glossary</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Workshops &amp; Training · ECM Integration Therapy (ECM-IT)</p>
+        <h1 id="page-title">INNOVATIVE SOMATIC BODYWORK &amp; WHOLE-BODY ECM INTEGRATION</h1>
+        <p class="lead">Exploring fascia/ECM matrix lines, protective responses and the body’s capacity for change.</p>
+        <svg class="wave" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 18 C190 18 240 84 470 56 S760 14 1000 68" fill="none" stroke="#a67c37" stroke-width="2"/></svg>
+        <p>ECM-IT is Claire Graziano’s developing clinical approach to whole-body somatic practice. It attends to protective responses, contraction, connection and expansion with curiosity and sensitivity.</p>
+        <p class="principle">Practitioners do not force the body to release. Through attunement and connection, they create conditions in which the body can initiate its own release, integration and thriving.</p>
+        <blockquote>“We thrive because we thrive.”</blockquote>
+        <div class="hero-actions">
+          <a class="button" href="#days">Explore the two workshop days</a>
+          <a class="text-link" href="#booking">See booking options</a>
+        </div>
+      </section>
+
+      <section id="days" class="days" aria-label="November 2026 workshops">
+        {workshops.map((workshop) => (
+          <article class="day" id={workshop.id} aria-labelledby={workshop.id + '-title'}>
+            <div class="day-heading">
+              <p class="eyebrow"><time datetime={workshop.datetime}>{workshop.day} {workshop.date}</time></p>
+              <span class="day-number" aria-hidden="true">{workshop.day === 'Friday' ? '01' : '02'}</span>
+            </div>
+            <h2 id={workshop.id + '-title'}>{workshop.title}</h2>
+            <p class="subtitle">{workshop.description}</p>
+            <ul>{workshop.topics.map((topic) => <li>{topic}</li>)}</ul>
+            <p class="audience">{workshop.audience}</p>
+            <dl class="details">
+              <div><dt>Time</dt><dd><time datetime={workshop.start}>{workshop.time}</time></dd></div>
+              <div><dt>Fee</dt><dd>{workshop.price} per participant</dd></div>
+              <div><dt>Maximum</dt><dd>{workshop.capacity} participants</dd></div>
+            </dl>
+            <p class="capacity-note">The nine-place limit will be set and enforced by Dandelion before bookings open.</p>
+            <figure class="poster">
+              {workshop.poster
+                ? <img class="poster-image" src={workshop.poster} alt={'Final workshop poster for ' + workshop.day + ' ' + workshop.date} loading="lazy" />
+                : <figcaption class="poster-pending">Final {workshop.day} poster will be added when the approved image is supplied.</figcaption>}
+            </figure>
+          </article>
+        ))}
+      </section>
+
+      <section class="both" id="booking" aria-labelledby="booking-title">
+        <p class="eyebrow">Registration and payment through Dandelion</p>
+        <h2 id="booking-title">Choose your workshop</h2>
+        <p>Book Friday, Saturday or both days. The combined fee is £340 per participant (2 × £170).</p>
+        <div class="booking-options">
+          {bookingOptions.map((option) => (
+            <article class="booking-option">
+              <h3>{option.label}</h3>
+              <p>{option.detail}</p>
+              <strong>{option.price}</strong>
+              {option.url
+                ? <div class="booking-live">
+                    <details>
+                      <summary>Open the Dandelion booking form</summary>
+                      <iframe title={option.label + ' booking form on Dandelion'} src={ticketFormUrl(option.url)} loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </details>
+                    <a href={option.url} target="_blank" rel="noopener noreferrer">Open this booking on Dandelion</a>
+                  </div>
+                : <span class="booking-pending" aria-disabled="true">Dandelion event link not supplied yet</span>}
+            </article>
+          ))}
+        </div>
+        <p class="booking-note">Dandelion will handle registration and payment. This website does not take payment or reserve a place. Booking options will be enabled when the three published Dandelion event links are supplied and tested.</p>
+      </section>
+
+      <section class="evidence" aria-labelledby="evidence-title">
+        <p class="eyebrow">Evidence and clinical interpretation</p>
+        <h2 id="evidence-title">Clear about what is known</h2>
+        <div class="evidence-grid">
+          <article>
+            <h3>Established scientific knowledge</h3>
+            <p>Fascia and the extracellular matrix are established areas of scientific study. Research describes their structure and biological roles. Those general findings do not, by themselves, prove every therapeutic explanation or outcome.</p>
+          </article>
+          <article>
+            <h3>Claire’s developing clinical hypotheses</h3>
+            <p>Seven years of ECM-IT clinical observations inform Claire’s developing hypotheses about fascia/ECM matrix lines, protection, contraction, connection and expansion. These are practice-based interpretations, not established scientific conclusions or proven mechanisms.</p>
+          </article>
+        </div>
+        <p class="disclaimer">The workshops offer education and experiential learning. They do not promise a clinical outcome, establish a diagnosis or replace a participant’s professional training and scope of practice.</p>
+      </section>
+
+      <section class="future" aria-labelledby="future-title">
+        <p class="eyebrow">Learning over time</p>
+        <h2 id="future-title">Future workshops and training</h2>
+        {dandelionOrganisationSlug
+          ? <iframe class="event-list" title="Upcoming workshops listed by Claire Graziano on Dandelion" src={'https://dandelion.events/o/' + dandelionOrganisationSlug + '/events?minimal=1'} loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          : <p>Future monthly workshops, practitioner training and longer programmes can be added here. Once Claire’s Dandelion organisation page is ready, its upcoming event list can be embedded in this section.</p>}
+      </section>
+
+      <section class="facilitator" id="about-claire" aria-labelledby="facilitator-title">
+        <p class="eyebrow">Your facilitator</p>
+        <h2 id="facilitator-title">Claire Graziano <span>MNCPS (Acc.)</span></h2>
+        <ul class="roles">
+          <li>Psychotherapist</li>
+          <li>Somatic-Focused Integrative Counsellor</li>
+          <li>Trauma Recovery Specialist</li>
+          <li>Body Therapist</li>
+        </ul>
+        <p>Founder and developer of Extracellular Matrix Integration Therapy (ECM-IT), Claire brings over 23,000 hours of somatic-focused therapeutic practice and seven years of ECM-IT clinical observations to this developing approach.</p>
+        <blockquote>“We thrive because we thrive.”</blockquote>
+      </section>
+
+      <aside class="contact" id="contact">
+        <h2>Questions about the workshops?</h2>
+        <p>Contact Claire if you would like to ask about the learning days or practical arrangements.</p>
+        <p><a href="mailto:claire.graziano14@gmail.com">claire.graziano14@gmail.com</a> · <a href="tel:+447565544438">+44 7565 544438</a></p>
+        <p><a href="/">Return to the homepage</a></p>
+      </aside>
+    </main>
+
+    <footer>
+      <span>Claire Graziano · MNCPS (Acc.)</span>
+      <a href="/">Home</a>
+      <a href="/glossary">Glossary</a>
+      <a href="/#contact">Contact Claire</a>
+    </footer>
+  </div>
+</Layout>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
+
+:global(*) { box-sizing: border-box; }
+:global(html) { scroll-behavior: smooth; background: #fbf8f0; }
+:global(body) { margin: 0; background: #fbf8f0; color: #293a31; font: 400 18px/1.75 'DM Sans', Arial, sans-serif; }
+:global(a) { color: inherit; }
+
+.page { --gold: #9a7133; --gold-line: #b58a49; --forest: #254b39; --cream: #fbf8f0; --paper: #f4eee2; --ink: #293a31; color: var(--ink); }
+.header { max-width: 1200px; margin: 0 auto; padding: 20px 5%; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+.brand { color: var(--ink); font-weight: 700; font-size: 20px; line-height: 1.25; text-decoration: none; }
+.brand em { color: var(--gold); font-family: Georgia, serif; font-style: normal; }
+.brand small { display: block; margin-top: 3px; font-size: 15px; font-weight: 500; }
+.header nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 18px; }
+.header nav a, footer a { min-height: 44px; display: inline-flex; align-items: center; text-underline-offset: 4px; font-size: 16px; }
+.header nav a[aria-current="page"] { font-weight: 700; text-decoration-thickness: 2px; }
+.skip-link { position: absolute; top: -100px; left: 12px; z-index: 10; padding: 10px 14px; background: white; color: var(--ink); }
+.skip-link:focus { top: 12px; }
+.hero { padding: clamp(58px, 8vw, 104px) max(6%, calc((100% - 1000px) / 2)); text-align: center; background: linear-gradient(160deg, #f5ecdd, #ede9dd); }
+.eyebrow { margin: 0 0 16px; color: #715727; font-size: 15px; font-weight: 700; letter-spacing: .09em; }
+.hero h1 { max-width: 1050px; margin: 16px auto; color: var(--ink); font: 700 clamp(34px, 5vw, 66px)/1.16 'DM Sans', Arial, sans-serif; text-transform: uppercase; }
+.lead { max-width: 850px; margin: 20px auto; color: #33453a; font-size: clamp(21px, 2.4vw, 27px); line-height: 1.5; }
+.wave { display: block; width: min(100%, 1000px); height: 74px; margin: 24px auto; }
+.hero > p:not(.eyebrow) { max-width: 800px; margin: 22px auto; }
+.principle { max-width: 850px; margin: 28px auto 12px; color: #40563f; font: 500 clamp(22px, 2.8vw, 30px)/1.55 'Playfair Display', Georgia, serif; }
+.hero blockquote, .facilitator blockquote { margin: 24px auto; color: #725526; font: italic 25px/1.45 'Playfair Display', Georgia, serif; }
+.hero-actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px 24px; margin-top: 26px; }
+.button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 12px 22px; border-radius: 999px; background: var(--forest); color: #fff; font-weight: 700; text-decoration: none; }
+.text-link { min-height: 44px; display: inline-flex; align-items: center; color: var(--forest); font-weight: 600; text-underline-offset: 4px; }
+.days { max-width: 1220px; margin: 0 auto; padding: 70px 5%; display: grid; gap: 28px; }
+.day { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(250px, .85fr); align-items: start; gap: clamp(25px, 4vw, 50px); padding: clamp(24px, 4vw, 44px); background: #f2e9db; border-top: 4px solid var(--gold-line); }
+.day:nth-child(even) { background: #e8eadf; }
+.day-heading { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.day-heading .eyebrow { margin: 0; }
+.day-number { color: #795e32; font: 500 38px/1 Georgia, serif; }
+.day h2, .both h2, .evidence h2, .future h2, .facilitator h2, .contact h2 { margin: 4px 0 14px; color: var(--ink); font: 600 clamp(28px, 3.4vw, 43px)/1.25 'DM Sans', Arial, sans-serif; }
+.day-copy { grid-column: 1; }
+.day .subtitle { color: #674e27; font-weight: 600; }
+.day ul { padding-left: 22px; }
+.day li { margin: 7px 0; }
+.audience { margin-top: 20px; color: #33453a; font-weight: 600; }
+.details { display: grid; gap: 0; margin: 20px 0 10px; border-top: 1px solid #c9b99d; }
+.details div { display: flex; justify-content: space-between; gap: 18px; padding: 11px 0; border-bottom: 1px solid #c9b99d; }
+.details dt { font-weight: 700; }
+.details dd { margin: 0; text-align: right; }
+.capacity-note { color: #4b5a4e; font-size: 16px; }
+.poster { grid-column: 2; grid-row: 2 / span 6; align-self: stretch; min-height: 300px; margin: 0; display: grid; place-items: center; background: #eee4d3; border: 1px solid #d7c39f; }
+.poster-image { display: block; max-width: 100%; max-height: 740px; width: auto; height: auto; object-fit: contain; }
+.poster-pending { padding: 32px; color: #69512c; text-align: center; }
+.both { padding: 78px 6%; background: #e3e9dc; text-align: center; }
+.both > p { max-width: 760px; margin: 16px auto; }
+.booking-options { width: min(1150px, 100%); margin: 32px auto 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; text-align: left; }
+.booking-option { min-width: 0; padding: 24px; background: var(--cream); border-top: 3px solid var(--gold-line); display: flex; flex-direction: column; align-items: flex-start; gap: 9px; }
+.booking-option h3 { margin: 0; color: var(--ink); font-size: 22px; line-height: 1.3; }
+.booking-option p { margin: 0; }
+.booking-option > strong { color: #664a20; font-size: 25px; }
+.booking-pending { margin-top: auto; padding-top: 16px; color: #455449; font-size: 16px; font-weight: 600; }
+.booking-live { width: 100%; }
+.booking-live details { margin: 12px 0; }
+.booking-live summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.booking-live iframe { width: 100%; min-height: 660px; margin-top: 12px; border: 1px solid #d5d9d1; background: white; }
+.booking-live > a { text-underline-offset: 4px; }
+.booking-note { max-width: 820px; padding-top: 20px; color: #455449; font-size: 16px; }
+.evidence, .future { max-width: 1150px; margin: 0 auto; padding: 76px 5%; }
+.evidence-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 24px; }
+.evidence-grid article { padding: 24px; background: #f3ecdf; border-left: 3px solid var(--gold-line); }
+.evidence-grid article:nth-child(2) { background: #e8eadf; }
+.evidence-grid h3 { margin-top: 0; font-size: 21px; }
+.disclaimer { color: #455449; font-size: 16px; }
+.event-list { width: 100%; min-height: 560px; border: 0; }
+.facilitator { padding: 78px 7%; background: #f3ecdf; text-align: center; }
+.facilitator h2 span { font-size: .52em; white-space: nowrap; color: #705425; }
+.roles { max-width: 800px; margin: 24px auto; padding: 0; list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.roles li { padding: 8px 14px; background: #e5eadd; border-radius: 999px; }
+.facilitator > p { max-width: 800px; margin: 18px auto; }
+.contact { max-width: 900px; margin: 0 auto; padding: 65px 7%; text-align: center; }
+footer { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 25px; padding: 28px 6%; background: var(--forest); color: #fffdf8; }
+.page a:focus-visible, .page summary:focus-visible { outline: 3px solid #825c23; outline-offset: 4px; border-radius: 3px; }
+@media (max-width: 850px) {
+  .header { align-items: flex-start; flex-direction: column; padding: 18px 6%; }
+  .header nav { justify-content: flex-start; gap: 3px 14px; }
+  .day { grid-template-columns: 1fr; }
+  .day-heading, .poster { grid-column: 1; }
+  .poster { grid-row: auto; max-height: none; }
+  .poster-image { max-height: 650px; }
+  .booking-options { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  :global(body) { font-size: 17px; }
+  .hero { padding: 58px 6%; }
+  .hero h1 { font-size: clamp(33px, 9vw, 48px); }
+  .wave { height: 50px; }
+  .day { padding: 22px; }
+  .day-heading { align-items: flex-start; }
+  .details div { align-items: flex-start; flex-direction: column; gap: 2px; }
+  .details dd { text-align: left; }
+  .evidence-grid { grid-template-columns: 1fr; }
+  .poster { padding: 14px; }
+  .poster-image { max-width: 100%; max-height: 580px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :global(html) { scroll-behavior: auto; }
+}
+</style>
